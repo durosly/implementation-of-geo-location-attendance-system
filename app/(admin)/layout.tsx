@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -25,7 +26,7 @@ export default async function RootLayout({
 						htmlFor="my-drawer-2"
 						className="btn btn-primary drawer-button lg:hidden"
 					>
-						Open drawer
+						<HiOutlineBars3CenterLeft />
 					</label>
 					{children}
 				</main>
@@ -38,11 +39,15 @@ export default async function RootLayout({
 				></label>
 				<ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
 					{/* Sidebar content here */}
+
 					<li>
-						<a>Sidebar Item 1</a>
+						<Link href={"/admin"}>Dashboard</Link>
 					</li>
 					<li>
 						<Link href={"/admin/coordinate"}>Coordinates</Link>
+					</li>
+					<li>
+						<Link href={"/admin/profiles"}>Profiles</Link>
 					</li>
 				</ul>
 			</div>
