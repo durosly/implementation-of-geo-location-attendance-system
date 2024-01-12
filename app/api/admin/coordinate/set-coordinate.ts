@@ -21,7 +21,9 @@ async function setCoordinate(request: NextRequest) {
 
 		await CoordinateModel.deleteMany({});
 
-		await CoordinateModel.create({ points: body });
+		const data = [...body, body[0]];
+
+		await CoordinateModel.create({ points: data });
 
 		return Response.json({ status: true });
 	} catch (error) {

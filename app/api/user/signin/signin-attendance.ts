@@ -7,27 +7,27 @@ import { options } from "../../auth/[...nextauth]/options";
 import { Cordinate } from "@/types/coordinate";
 import connectMongo from "@/lib/connectDB";
 // @ts-expect-error
-import turf from "@turf/turf";
+import * as turf from "@turf/turf";
 
-function isPointInPolygon(point: number[], polygon: number[][]) {
-	const x = point[0];
-	const y = point[1];
-	let inside = false;
+// function isPointInPolygon(point: number[], polygon: number[][]) {
+// 	const x = point[0];
+// 	const y = point[1];
+// 	let inside = false;
 
-	for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-		const xi = polygon[i][0];
-		const yi = polygon[i][1];
-		const xj = polygon[j][0];
-		const yj = polygon[j][1];
+// 	for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+// 		const xi = polygon[i][0];
+// 		const yi = polygon[i][1];
+// 		const xj = polygon[j][0];
+// 		const yj = polygon[j][1];
 
-		const intersect =
-			yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+// 		const intersect =
+// 			yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
 
-		if (intersect) inside = !inside;
-	}
+// 		if (intersect) inside = !inside;
+// 	}
 
-	return inside;
-}
+// 	return inside;
+// }
 
 async function signAttendance(request: NextRequest) {
 	try {
@@ -51,8 +51,11 @@ async function signAttendance(request: NextRequest) {
 			item.log,
 		]);
 
+		// console.log(polygon);
+		// console.log(point);
+
 		const tPoint = turf.point(point);
-		const tPolygon = turf.polygon(polygon);
+		const tPolygon = turf.polygon([polygon]);
 
 		// const isInside = isPointInPolygon(point, polygon);
 		const isInside = turf.booleanPointInPolygon(tPoint, tPolygon);
