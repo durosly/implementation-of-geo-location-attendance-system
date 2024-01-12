@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { NextRequest } from "next/server";
 import { options } from "../../auth/[...nextauth]/options";
 import { Cordinate } from "@/types/coordinate";
+import connectMongo from "@/lib/connectDB";
 
 function isPointInPolygon(point: number[], polygon: number[][]) {
 	const x = point[0];
@@ -32,6 +33,8 @@ async function signAttendance(request: NextRequest) {
 
 		const point = [Number(latitude), Number(longitude)];
 
+		await connectMongo();
+
 		const coordinate = await CoordinateModel.findOne({}).sort("-createAt");
 
 		if (!coordinate) {
@@ -55,7 +58,7 @@ async function signAttendance(request: NextRequest) {
 					status: false,
 					message: "You're not within the designated location",
 				},
-				{ status: 403 }
+				{ status: 400 }
 			);
 		}
 

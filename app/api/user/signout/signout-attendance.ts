@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { NextRequest } from "next/server";
 import { options } from "../../auth/[...nextauth]/options";
 import { Cordinate } from "@/types/coordinate";
+import connectMongo from "@/lib/connectDB";
 
 function isPointInPolygon(point: number[], polygon: number[][]) {
 	const x = point[0];
@@ -31,6 +32,8 @@ async function signOutAttendance(request: NextRequest) {
 		const { latitude, longitude } = await request.json();
 
 		const point = [Number(latitude), Number(longitude)];
+
+		await connectMongo();
 
 		const coordinate = await CoordinateModel.findOne({}).sort("-createAt");
 
