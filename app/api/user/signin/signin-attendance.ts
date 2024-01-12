@@ -6,6 +6,8 @@ import { NextRequest } from "next/server";
 import { options } from "../../auth/[...nextauth]/options";
 import { Cordinate } from "@/types/coordinate";
 import connectMongo from "@/lib/connectDB";
+// @ts-expect-error
+import turf from "@turf/turf";
 
 function isPointInPolygon(point: number[], polygon: number[][]) {
 	const x = point[0];
@@ -49,10 +51,14 @@ async function signAttendance(request: NextRequest) {
 			item.log,
 		]);
 
-		const isInside = isPointInPolygon(point, polygon);
+		const tPoint = turf.point(point);
+		const tPolygon = turf.polygon(polygon);
 
-		console.log(JSON.stringify(point));
-		console.log(JSON.stringify(polygon));
+		// const isInside = isPointInPolygon(point, polygon);
+		const isInside = turf.booleanPointInPolygon(tPoint, tPolygon);
+
+		// console.log(JSON.stringify(point));
+		// console.log(JSON.stringify(polygon));
 
 		if (!isInside) {
 			console.log("Point is not inside the polygon");
