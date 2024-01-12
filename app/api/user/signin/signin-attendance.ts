@@ -64,7 +64,7 @@ async function signAttendance(request: NextRequest) {
 		// console.log(JSON.stringify(polygon));
 
 		if (!isInside) {
-			console.log("Point is not inside the polygon");
+			// console.log("Point is not inside the polygon");
 			return Response.json(
 				{
 					status: false,
