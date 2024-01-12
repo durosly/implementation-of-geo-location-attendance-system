@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
+import LogoutBtn from "../components/logout-btn";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -55,12 +56,15 @@ export default async function RootLayout({
 						<ul className="menu menu-horizontal">
 							{/* Navbar menu content here */}
 							<li>
-								<a>Navbar Item 1</a>
+								<a>Profile</a>
 							</li>
 							<li>
-								<a>Navbar Item 2</a>
+								<a>Attendance</a>
 							</li>
 						</ul>
+						<LogoutBtn className="btn btn-error btn-sm">
+							Log out
+						</LogoutBtn>
 					</div>
 				</div>
 				{/* Page content here */}
@@ -72,15 +76,20 @@ export default async function RootLayout({
 					aria-label="close sidebar"
 					className="drawer-overlay"
 				></label>
-				<ul className="menu p-4 w-80 min-h-full bg-base-200">
-					{/* Sidebar content here */}
-					<li>
-						<a>Sidebar Item 1</a>
-					</li>
-					<li>
-						<a>Sidebar Item 2</a>
-					</li>
-				</ul>
+				<div className="menu p-4 w-80 min-h-full bg-base-200">
+					<ul className="">
+						{/* Sidebar content here */}
+						<li>
+							<a>Profile</a>
+						</li>
+						<li>
+							<a>Attendance</a>
+						</li>
+					</ul>
+					<LogoutBtn className="btn btn-error btn-sm">
+						Log out
+					</LogoutBtn>
+				</div>
 			</div>
 		</div>
 	);

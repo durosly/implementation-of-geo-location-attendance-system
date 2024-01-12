@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
+import LogoutBtn from "../components/logout-btn";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -37,19 +38,22 @@ export default async function RootLayout({
 					aria-label="close sidebar"
 					className="drawer-overlay"
 				></label>
-				<ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-					{/* Sidebar content here */}
+				<div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+					<ul className="">
+						{/* Sidebar content here */}
 
-					<li>
-						<Link href={"/admin"}>Dashboard</Link>
-					</li>
-					<li>
-						<Link href={"/admin/coordinate"}>Coordinates</Link>
-					</li>
-					<li>
-						<Link href={"/admin/profiles"}>Profiles</Link>
-					</li>
-				</ul>
+						<li>
+							<Link href={"/admin"}>Dashboard</Link>
+						</li>
+						<li>
+							<Link href={"/admin/coordinate"}>Coordinates</Link>
+						</li>
+						<li>
+							<Link href={"/admin/profiles"}>Profiles</Link>
+						</li>
+					</ul>
+					<LogoutBtn className="btn btn-error">Logout</LogoutBtn>
+				</div>
 			</div>
 		</div>
 	);
