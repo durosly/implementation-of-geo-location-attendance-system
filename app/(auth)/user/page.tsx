@@ -1,10 +1,14 @@
+import { getServerSession } from "next-auth";
 import StatusWrapper from "./__components/status-wrapper";
+import { options } from "../../api/auth/[...nextauth]/options";
 
-function UserDashboard() {
+async function UserDashboard() {
+	const session = await getServerSession(options);
+
 	return (
 		<div className="text-center mt-10">
 			<div className=" mb-20">
-				<h2>Welcome, John Doe</h2>
+				<h2>Welcome, {session?.user.name || "nil"}</h2>
 				<StatusWrapper />
 			</div>
 
