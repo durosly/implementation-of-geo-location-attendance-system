@@ -38,7 +38,7 @@ export default async function RootLayout({
 					aria-label="close sidebar"
 					className="drawer-overlay"
 				></label>
-				<div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+				<div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between">
 					<ul className="">
 						{/* Sidebar content here */}
 

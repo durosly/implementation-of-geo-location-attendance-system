@@ -1,5 +1,3 @@
-import Link from "next/link";
-import React from "react";
 import ActivitiesListDisplay from "./__components/activities-list-display";
 
 function AdminDashboard() {

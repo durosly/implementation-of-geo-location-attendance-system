@@ -1,9 +1,6 @@
 "use client";
 
 import { handleError } from "@/lib/handleError";
-import { CheckIn } from "@/types/checkin";
-import { CheckOut } from "@/types/checkout";
-import { Cordinate } from "@/types/coordinate";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Link from "next/link";
@@ -18,8 +15,6 @@ function ActivitiesListDisplay() {
 	});
 
 	const activities = data?.data;
-
-	console.log(activities);
 
 	return (
 		<>
@@ -44,7 +39,7 @@ function ActivitiesListDisplay() {
 					>
 						<div className="flex gap-2 items-center">
 							<Link
-								href={`/admin/profile/${act.user._id}`}
+								href={`/admin/profiles/${act.user._id}`}
 								className="link link-hover"
 							>
 								{act.user.fullname}

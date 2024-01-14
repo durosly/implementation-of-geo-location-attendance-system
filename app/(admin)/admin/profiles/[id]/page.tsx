@@ -2,6 +2,7 @@ import connectMongo from "@/lib/connectDB";
 import UserModel from "@/models/user";
 import { notFound } from "next/navigation";
 import React from "react";
+import UserActivities from "./__components/user-activities";
 
 async function UserProfile({ params: { id } }: { params: { id: string } }) {
 	await connectMongo();
@@ -49,35 +50,7 @@ async function UserProfile({ params: { id } }: { params: { id: string } }) {
 				</div>
 			</div>
 
-			<div className="mt-10">
-				<div className="flex flex-wrap gap-2 mb-2">
-					<input
-						type="radio"
-						name="cate"
-						aria-label="Today"
-						className="btn"
-					/>
-					<input
-						type="radio"
-						name="cate"
-						aria-label="30 days"
-						className="btn"
-					/>
-				</div>
-				<div className="card bg-base-200">
-					<div className="card-body">
-						<h3 className="card-title">Activities</h3>
-						<ul>
-							<li className="flex justify-between gap-5">
-								<span className="badge badge-success">
-									Signin
-								</span>
-								<span>12/12/12</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			<UserActivities id={user._id} />
 		</>
 	);
 }

@@ -4,7 +4,6 @@ import CheckInModel, { CheckInDB } from "@/models/checkin";
 import CheckOutModel, { CheckOutDB } from "@/models/checkout";
 import { CheckIn } from "@/types/checkin";
 import { CheckOut } from "@/types/checkout";
-import { NextRequest } from "next/server";
 
 async function getAllUsersActivity() {
 	try {
