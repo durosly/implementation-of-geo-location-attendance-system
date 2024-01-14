@@ -3,6 +3,10 @@ import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
 import LogoutBtn from "../components/logout-btn";
+import Link from "next/link";
+import { GoHome } from "react-icons/go";
+import { RiUser3Line } from "react-icons/ri";
+import { MdLogout } from "react-icons/md";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -29,7 +33,7 @@ export default async function RootLayout({
 			/>
 			<div className="drawer-content flex flex-col">
 				{/* Navbar */}
-				<div className="w-full navbar bg-base-300">
+				<div className="w-full navbar bg-base-200">
 					<div className="flex-none lg:hidden">
 						<label
 							htmlFor="my-drawer-3"
@@ -51,15 +55,19 @@ export default async function RootLayout({
 							</svg>
 						</label>
 					</div>
-					<div className="flex-1 px-2 mx-2">Navbar Title</div>
+					<div className="flex-1 px-2 mx-2">
+						<Link
+							href="/user"
+							className="font-bold"
+						>
+							FUPRE
+						</Link>
+					</div>
 					<div className="flex-none hidden lg:block">
 						<ul className="menu menu-horizontal">
 							{/* Navbar menu content here */}
 							<li>
-								<a>Profile</a>
-							</li>
-							<li>
-								<a>Attendance</a>
+								<Link href="/user/profile">Profile</Link>
 							</li>
 						</ul>
 						<LogoutBtn className="btn btn-error btn-sm">
@@ -76,18 +84,31 @@ export default async function RootLayout({
 					aria-label="close sidebar"
 					className="drawer-overlay"
 				></label>
-				<div className="menu p-4 w-80 min-h-full bg-base-200">
-					<ul className="">
-						{/* Sidebar content here */}
-						<li>
-							<a>Profile</a>
-						</li>
-						<li>
-							<a>Attendance</a>
-						</li>
-					</ul>
+				<div className="menu p-4 w-80 min-h-full bg-base-200 flex flex-col justify-between">
+					<div>
+						<div className="pl-4">
+							<h1 className="font-bold">FUPRE geo-location</h1>
+							<p className="text-xs">Attendance system</p>
+						</div>
+						<ul className="mt-5">
+							{/* Sidebar content here */}
+							<li>
+								<Link href="/user">
+									<GoHome className="w-5 h-5" />
+									Home
+								</Link>
+							</li>
+							<li>
+								<Link href="/user/profile">
+									<RiUser3Line className="w-5 h-5" />
+									Profile
+								</Link>
+							</li>
+						</ul>
+					</div>
 					<LogoutBtn className="btn btn-error btn-sm">
 						Log out
+						<MdLogout className="w-5 h-5" />
 					</LogoutBtn>
 				</div>
 			</div>
